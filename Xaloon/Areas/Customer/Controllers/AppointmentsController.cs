@@ -12,21 +12,27 @@ namespace Xaloon.Areas.Customer.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly IAppointmentRepository _context;
+        private readonly IDayRepository _ayRepository;
+        private readonly ITimeRepository _timeRepository;
+        private readonly ITitleRepository _trep;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public AppointmentsController(IAppointmentRepository context, ApplicationDbContext db)
+        public AppointmentsController(IAppointmentRepository context, ApplicationDbContext db, IDayRepository ayRepository, ITimeRepository timeRepository, ITitleRepository trep, IHttpContextAccessor contextAccessor)
         {
             _context = context;
             _db = db;
+            _ayRepository = ayRepository;
+            _timeRepository = timeRepository;
+            _trep = trep;
+            _contextAccessor = contextAccessor;
         }
 
-        // GET: Customer/Appointments
         public async Task<IActionResult> Index()
         {
             IEnumerable<Appointment> appointments = await _context.GetAllAppointments();
             return View(appointments);
         }
 
-        // GET: Customer/Appointments/Details/5
         public async Task<IActionResult> Details(int id)
         {
             if (id == null || id == null)
@@ -40,9 +46,9 @@ namespace Xaloon.Areas.Customer.Controllers
 
         public IActionResult Create()
         {
-            ViewData["DayId"] = new SelectList(_db.Days, "Id", "SetDay");
-            ViewData["TimeId"] = new SelectList(_db.Times, "Id", "SetTime");
-            ViewData["TitleId"] = new SelectList(_db.Titles, "Id", "Bookingitle");
+            ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay");
+            ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime");
+            ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle");
             return View();
         }
 
@@ -57,9 +63,9 @@ namespace Xaloon.Areas.Customer.Controllers
                 _context.Save();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DayId"] = new SelectList(_db.Days, "Id", "SetDay", appointment.DayId);
-            ViewData["TimeId"] = new SelectList(_db.Times, "Id", "SetTime", appointment.TimeId);
-            ViewData["TitleId"] = new SelectList(_db.Titles, "Id", "Bookingitle", appointment.TitleId);
+            ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay", appointment.DayId);
+            ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime", appointment.TimeId);
+            ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle", appointment.TitleId);
             return View(appointment);
         }
 
@@ -75,9 +81,9 @@ namespace Xaloon.Areas.Customer.Controllers
             {
                 return NotFound();
             }
-            ViewData["DayId"] = new SelectList(_db.Days, "Id", "SetDay", appointment.DayId);
-            ViewData["TimeId"] = new SelectList(_db.Times, "Id", "SetTime", appointment.TimeId);
-            ViewData["TitleId"] = new SelectList(_db.Titles, "Id", "Bookingitle", appointment.TitleId);
+            ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay", appointment.DayId);
+            ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime", appointment.TimeId);
+            ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle", appointment.TitleId);
             return View(appointment);
         }
 
@@ -111,9 +117,9 @@ namespace Xaloon.Areas.Customer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DayId"] = new SelectList(_db.Days, "Id", "SetDay", appointment.DayId);
-            ViewData["TimeId"] = new SelectList(_db.Times, "Id", "SetTime", appointment.TimeId);
-            ViewData["TitleId"] = new SelectList(_db.Titles, "Id", "Bookingitle", appointment.TitleId);
+            ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay", appointment.DayId);
+            ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime", appointment.TimeId);
+            ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle", appointment.TitleId);
             return View(appointment);
         }
 

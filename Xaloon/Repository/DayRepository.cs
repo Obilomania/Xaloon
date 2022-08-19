@@ -35,6 +35,7 @@ namespace Xaloon.Repository
         {
             return await _context.Days.FirstOrDefaultAsync(d => d.Id == id);
         }
+
         public bool Save()
         {
             var saved = _context.SaveChanges();
