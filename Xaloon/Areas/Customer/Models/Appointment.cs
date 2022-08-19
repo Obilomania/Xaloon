@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Xaloon.Areas.Admin.Models;
 using Xaloon.Areas.Data;
 
@@ -10,7 +9,7 @@ namespace Xaloon.Areas.Customer.Models
         [Key]
         public int Id { get; set; }
 
-        public int ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public ApplicationUser? Booker { get; set; }
 
 
@@ -33,8 +32,7 @@ namespace Xaloon.Areas.Customer.Models
 
 
 
-        [Required]
-        [Display(Name = "Extra Message (optional)")]
+        [Display(Name = "Extra Message")]
         public string? ExtraMessage { get; set; }
 
 

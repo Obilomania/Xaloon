@@ -11,14 +11,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider)
     .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI();
-;
+
 
 builder.Services.AddScoped<IDayRepository, DayRepository>();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
 builder.Services.AddScoped<ITitleRepository, TitleRepository>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 
 var app = builder.Build();
 

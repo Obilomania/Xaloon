@@ -1,13 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using Xaloon.Areas.Customer.Models;
 using Xaloon.Areas.Data;
 using Xaloon.Repository.IRepository;
+using Xaloon.Utility;
 
 namespace Xaloon.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "Customer")]
     public class AppointmentsController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -46,10 +50,12 @@ namespace Xaloon.Areas.Customer.Controllers
 
         public IActionResult Create()
         {
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
+            var appointment = new Appointment { ApplicationUserId = curUserId };
             ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay");
             ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime");
             ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle");
-            return View();
+            return View(appointment);
         }
 
         
@@ -61,7 +67,7 @@ namespace Xaloon.Areas.Customer.Controllers
             {
                 _context.Add(appointment);
                 _context.Save();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Dashboard");
             }
             ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay", appointment.DayId);
             ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime", appointment.TimeId);
