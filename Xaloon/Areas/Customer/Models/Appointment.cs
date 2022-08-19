@@ -27,7 +27,5 @@ namespace Xaloon.Areas.Customer.Models
 
         [Required]
         public string? ExtraMessage { get; set; }
-
-
     }
 }
