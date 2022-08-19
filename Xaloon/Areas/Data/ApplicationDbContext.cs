@@ -15,5 +15,6 @@ namespace Xaloon.Areas.Data
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Day> Days { get; set; }
         public DbSet<Time> Times { get; set; }
+        public DbSet<Title> Titles { get; set; }
     }
 }
