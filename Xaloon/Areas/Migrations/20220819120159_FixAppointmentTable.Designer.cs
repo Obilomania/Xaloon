@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xaloon.Areas.Data;
 
@@ -11,9 +12,10 @@ using Xaloon.Areas.Data;
 namespace Xaloon.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220819120159_FixAppointmentTable")]
+    partial class FixAppointmentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,7 +171,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Days", (string)null);
+                    b.ToTable("Days");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Admin.Models.Time", b =>
@@ -186,7 +188,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Times", (string)null);
+                    b.ToTable("Times");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Admin.Models.Title", b =>
@@ -203,7 +205,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Titles", (string)null);
+                    b.ToTable("Titles");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Customer.Models.Appointment", b =>
@@ -249,7 +251,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasIndex("TitleId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Data.ApplicationUser", b =>

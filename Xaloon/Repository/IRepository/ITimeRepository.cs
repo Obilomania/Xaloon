@@ -4,7 +4,7 @@ namespace Xaloon.Repository.IRepository
 {
     public interface ITimeRepository
     {
-        Task<IEnumerable<Time>> GetAllDays();
+        Task<IEnumerable<Time>> GetAllTime();
         Task<Time> GetDayById(int id);
         bool Add(Time time);
         bool Update(Time time);

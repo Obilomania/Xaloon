@@ -4,7 +4,7 @@ namespace Xaloon.Repository.IRepository
 {
     public interface ITitleRepository
     {
-        Task<IEnumerable<Title>> GetAllDays();
+        Task<IEnumerable<Title>> GetAllTitles();
         Task<Title> GetDayById(int id);
         bool Add(Title title);
         bool Update(Title title);

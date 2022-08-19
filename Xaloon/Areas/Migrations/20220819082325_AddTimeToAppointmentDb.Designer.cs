@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xaloon.Areas.Data;
 
@@ -11,9 +12,10 @@ using Xaloon.Areas.Data;
 namespace Xaloon.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220819082325_AddTimeToAppointmentDb")]
+    partial class AddTimeToAppointmentDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,7 +171,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Days", (string)null);
+                    b.ToTable("Days");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Admin.Models.Time", b =>
@@ -186,7 +188,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Times", (string)null);
+                    b.ToTable("Times");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Admin.Models.Title", b =>
@@ -203,7 +205,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Titles", (string)null);
+                    b.ToTable("Titles");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Customer.Models.Appointment", b =>
@@ -214,13 +216,14 @@ namespace Xaloon.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ApplicationUserId")
+                    b.Property<int?>("ApplicationUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("BookedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("BookerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("DayId")
@@ -230,7 +233,7 @@ namespace Xaloon.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsApproved")
+                    b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
                     b.Property<int>("TimeId")
@@ -249,7 +252,7 @@ namespace Xaloon.Data.Migrations
 
                     b.HasIndex("TitleId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("Xaloon.Areas.Data.ApplicationUser", b =>
@@ -395,7 +398,9 @@ namespace Xaloon.Data.Migrations
                 {
                     b.HasOne("Xaloon.Areas.Data.ApplicationUser", "Booker")
                         .WithMany()
-                        .HasForeignKey("BookerId");
+                        .HasForeignKey("BookerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Xaloon.Areas.Admin.Models.Day", "Day")
                         .WithMany()

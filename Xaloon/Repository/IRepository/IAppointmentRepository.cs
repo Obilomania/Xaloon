@@ -4,7 +4,7 @@ namespace Xaloon.Repository.IRepository
 {
     public interface IAppointmentRepository
     {
-        Task<IEnumerable<Appointment>> GetAll();
+        Task<IEnumerable<Appointment>> GetAllAppointments();
         Task<Appointment> GetById(int id);
         bool Add(Appointment appointment);
         bool Update(Appointment appointment);

@@ -26,7 +26,7 @@ namespace Xaloon.Repository
             return Save();
         }
 
-        public async Task<IEnumerable<Title>> GetAllDays()
+        public async Task<IEnumerable<Title>> GetAllTitles()
         {
             return await _context.Titles.ToListAsync();
         }

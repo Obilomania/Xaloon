@@ -16,7 +16,7 @@ namespace Xaloon.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Time> times = await _context.GetAllDays();
+            IEnumerable<Time> times = await _context.GetAllTime();
             return View(times);
         }
 

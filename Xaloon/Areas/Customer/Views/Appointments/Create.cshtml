@@ -13,27 +13,29 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ApplicationUserId" class="control-label"></label>
-                <input asp-for="ApplicationUserId" class="form-control" />
-                <span asp-validation-for="ApplicationUserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="TitleId" class="control-label"></label>
-                <select asp-for="TitleId" class ="form-control" asp-items="ViewBag.TitleId"></select>
+                <select asp-for="TitleId" class ="form-control" asp-items="ViewBag.TitleId">
+                    <option disabled selected>--Select Appointment Title--</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="DayId" class="control-label"></label>
-                <select asp-for="DayId" class ="form-control" asp-items="ViewBag.DayId"></select>
+                <select asp-for="DayId" class ="form-control" asp-items="ViewBag.DayId">
+                    <option disabled selected>--Choose Day--</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="TimeId" class="control-label"></label>
-                <select asp-for="TimeId" class ="form-control" asp-items="ViewBag.TimeId"></select>
+                <select asp-for="TimeId" class ="form-control" asp-items="ViewBag.TimeId">
+                    <option>--Choose Time--</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="ExtraMessage" class="control-label"></label>
-                <input asp-for="ExtraMessage" class="form-control" />
+                <textarea asp-for="ExtraMessage" class="form-control" style="resize:none;" rows="4" ></textarea>
                 <span asp-validation-for="ExtraMessage" class="text-danger"></span>
             </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Xaloon.Areas.Admin.Models;
 using Xaloon.Areas.Customer.Models;
 using Xaloon.Areas.Data;
 using Xaloon.Repository.IRepository;
@@ -27,9 +26,11 @@ namespace Xaloon.Repository
             return Save();
         }
 
-        public async Task<IEnumerable<Appointment>> GetAll()
+        public async Task<IEnumerable<Appointment>> GetAllAppointments()
         {
-            return await _context.Appointments.ToListAsync();
+            return await _context.Appointments.Include(a => a.Day)
+                                 .Include(a => a.Time)
+                                 .Include(a => a.Title).ToListAsync();
         }
 
         public Task<Appointment> GetById(int id)
