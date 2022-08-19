@@ -24,8 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Xaloon.Data\Xaloon.Data.csproj" />
-    <ProjectReference Include="..\Xaloon.Models\Xaloon.Models.csproj" />
     <ProjectReference Include="..\Xaloon.Utility\Xaloon.Utility.csproj" />
   </ItemGroup>
 

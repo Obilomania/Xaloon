@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Xaloon.Models.Models;
+using Xaloon.Areas.Admin.Models;
+using Xaloon.Areas.Customer.Models;
 
-namespace Xaloon.Data
+namespace Xaloon.Areas.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -11,5 +12,8 @@ namespace Xaloon.Data
 
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Day> Days { get; set; }
+        public DbSet<Time> Times { get; set; }
     }
 }

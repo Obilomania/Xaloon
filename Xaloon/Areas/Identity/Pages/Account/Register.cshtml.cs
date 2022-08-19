@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
-using Xaloon.Models.Models;
+using Xaloon.Areas.Data;
 using Xaloon.Utility;
 
 namespace Xaloon.Areas.Identity.Pages.Account

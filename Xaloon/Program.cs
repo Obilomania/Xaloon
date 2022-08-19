@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Xaloon.Data;
 using Microsoft.AspNetCore.Identity;
-using Xaloon.Models.Models;
+using Xaloon.Areas.Data;
+using Xaloon.Repository;
+using Xaloon.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultUI();
+;
+
+builder.Services.AddScoped<IDayRepository, DayRepository>();
 
 var app = builder.Build();
 
@@ -33,6 +37,9 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+
+
+app.MapRazorPages();
 
 app.Run();

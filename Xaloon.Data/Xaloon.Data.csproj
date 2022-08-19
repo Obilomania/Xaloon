@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Xaloon.Models\Xaloon.Models.csproj" />
-  </ItemGroup>
-
 </Project>
