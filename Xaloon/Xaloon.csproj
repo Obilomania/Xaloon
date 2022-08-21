@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Xaloon.Utility\Xaloon.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\AdminDashboard\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<Xaloon.Areas.Customer.Models.Appointment>
+@using Microsoft.AspNetCore.Identity
+@using Xaloon.Areas.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -13,6 +18,9 @@
     <thead>
         <tr>
             <th class="text-center">
+                @Html.DisplayNameFor(model => model.Booker)
+            </th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th class="text-center">
@@ -25,7 +33,10 @@
                 @Html.DisplayNameFor(model => model.ExtraMessage)
             </th>
             <th class="text-center">
-                Status (Approved when checked)
+                @Html.DisplayNameFor(model => model.BookedOn)
+            </th>
+            <th class="text-center">
+                Status
             </th>
             <th></th>
         </tr>
@@ -34,7 +45,7 @@
 @foreach (var item in Model) {
         <tr>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.Booker.FirstName)
+                    @Html.DisplayFor(modelItem => item.Booker.FirstName)
             </td>
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Title.Bookingitle)
@@ -45,7 +56,7 @@
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Time.SetTime)
             </td>
-                <td class="text-center">
+             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.ExtraMessage)
             </td>
             <td class="text-center">

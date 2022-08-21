@@ -46,8 +46,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ExtraMessage)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsApproved)
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Approved)
                 </td>
                 <td>
                     <a asp-controller="Appointments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -5,35 +5,32 @@ using Microsoft.EntityFrameworkCore;
 using Xaloon.Areas.Customer.Models;
 using Xaloon.Areas.Data;
 using Xaloon.Repository.IRepository;
-using Xaloon.Utility;
 
-namespace Xaloon.Areas.Customer.Controllers
+namespace Xaloon.Areas.Admin.Controllers
 {
-    [Area("Customer")]
-    [Authorize(Roles = "Customer")]
-    public class AppointmentsController : Controller
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    public class AdminDashBoard : Controller
     {
-        private readonly ApplicationDbContext _db;
-        private readonly IAppointmentRepository _context;
+        private readonly IAdminDashboardRepository _iapp;
         private readonly IDayRepository _ayRepository;
-        private readonly ITimeRepository _timeRepository;
         private readonly ITitleRepository _trep;
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly ApplicationDbContext _db;
 
-        public AppointmentsController(IAppointmentRepository context, ApplicationDbContext db, IDayRepository ayRepository, ITimeRepository timeRepository, ITitleRepository trep, IHttpContextAccessor contextAccessor)
+        private readonly ITimeRepository _timeRepository;
+        public AdminDashBoard(IAdminDashboardRepository iapp, IDayRepository ayRepository, ITimeRepository timeRepository, ITitleRepository trep, ApplicationDbContext db)
         {
-            _context = context;
-            _db = db;
+            _iapp = iapp;
             _ayRepository = ayRepository;
             _timeRepository = timeRepository;
             _trep = trep;
-            _contextAccessor = contextAccessor;
+            _db = db;
         }
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Appointment> appointments = await _context.GetAllAppointments();
-            return View(appointments);
+            IEnumerable<Appointment> appointment = await  _iapp.GetAllAppointments();
+            return View(appointment);
         }
 
         public async Task<IActionResult> Details(int id)
@@ -43,36 +40,10 @@ namespace Xaloon.Areas.Customer.Controllers
                 return NotFound();
             }
 
-            Appointment appointment = await _context.GetById(id);
+            Appointment appointment = await _iapp.GetById(id);
             return View(appointment);
         }
 
-        public IActionResult Create()
-        {
-            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
-            var appointment = new Appointment { ApplicationUserId = curUserId };
-            ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay");
-            ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime");
-            ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle");
-            return View(appointment);
-        }
-
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,TitleId,DayId,TimeId,ExtraMessage,BookedOn,IsApproved")] Appointment appointment)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(appointment);
-                _context.Save();
-                return RedirectToAction("Index", "Dashboard");
-            }
-            ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay", appointment.DayId);
-            ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime", appointment.TimeId);
-            ViewData["TitleId"] = new SelectList(_trep.GetAllTitles().Result, "Id", "Bookingitle", appointment.TitleId);
-            return View(appointment);
-        }
 
         public async Task<IActionResult> Edit(int id)
         {
@@ -81,7 +52,7 @@ namespace Xaloon.Areas.Customer.Controllers
                 return NotFound();
             }
 
-            Appointment  appointment = await _context.GetById(id);
+            Appointment appointment = await _iapp.GetById(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -92,10 +63,10 @@ namespace Xaloon.Areas.Customer.Controllers
             return View(appointment);
         }
 
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,TitleId,DayId,TimeId,ExtraMessage,BookedOn,IsApproved")] Appointment appointment)
+        public async Task<IActionResult> Edit(int? id, [Bind("Id,ApplicationUserId,TitleId,DayId,TimeId,ExtraMessage,BookedOn,IsApproved,Approved")] Appointment appointment)
         {
             if (id != appointment.Id)
             {
@@ -106,8 +77,8 @@ namespace Xaloon.Areas.Customer.Controllers
             {
                 try
                 {
-                    _context.Update(appointment);
-                    _context.Save();
+                    _iapp.Update(appointment);
+                    _iapp.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -128,14 +99,13 @@ namespace Xaloon.Areas.Customer.Controllers
             return View(appointment);
         }
 
-
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null || id == null)
             {
                 return NotFound();
             }
-            Appointment appointment = await _context.GetById(id);
+            Appointment appointment = await _iapp.GetById(id);
             if (appointment == null)
             {
                 return NotFound();
@@ -153,13 +123,13 @@ namespace Xaloon.Areas.Customer.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Appointments'  is null.");
             }
-            var appointment = await _context.GetById(id);
+            var appointment = await _iapp.GetById(id);
             if (appointment != null)
             {
-                _context.Delete(appointment);
+                _iapp.Delete(appointment);
             }
-            
-            _context.Save();
+
+            _iapp.Save();
             return RedirectToAction(nameof(Index));
         }
 

@@ -44,5 +44,8 @@ namespace Xaloon.Areas.Customer.Models
 
         [Display(Name = "Status")]
         public bool? IsApproved { get; set; }
+
+        public bool Approved { get; set; }
+
     }
 }
