@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Xaloon.Areas.Admin.Models;
 using Xaloon.Repository.IRepository;
 
 namespace Xaloon.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class DayController : Controller
     {
         private readonly IDayRepository _context;
