@@ -50,7 +50,7 @@ namespace Xaloon.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 return NotFound();
             }

@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Xaloon.Areas.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<nav>
+    <a asp-area="Customer" asp-controller="Home" asp-action="Index"><img class="brandName" src="~/img/Xaloon-Logo.png" /></a>
+    <div class="lower-Nav">
+       <ul class="navLinks">
+           <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+           <li><a asp-area="Customer" asp-controller="Home" asp-action="About">About</a></li>
+           <li><a asp-area="Customer" asp-controller="Home" asp-action="Services">Services</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Customer"))
+                {
+                    <li>
+                        <a asp-area="Customer" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    </li>
+                }
+            }
+            @if (User.Identity.IsAuthenticated || SignInManager.IsSignedIn(User))
+            {
+                    <li>
+                        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome @((await UserManager.GetUserAsync(User)).FirstName)</a>
+                    </li>
+                if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a asp-area="Admin" asp-controller="AdminDashboard" asp-action="Index">Admin Dashboard</a>
+                    </li>
+                    <li>
+                        <a  asp-area="Admin" asp-controller="Day" asp-action="Index">Day</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Time" asp-action="Index">Time</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="Title" asp-action="Index">Title</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                    </li>
+            }
+                    <li>
+                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit">Logout</button>
+                        </form>
+                    </li>
+            }
+            else
+            {
+                    <li>
+                        <a class="" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                    <li>
+                        <a class="" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </li>
+            }
+       </ul>
+    </div>
+    <i class="bi bi-list"></i>
+</nav>

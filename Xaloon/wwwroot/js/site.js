@@ -1,4 +1,8 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const logo = document.querySelector(".logo");
+const hamburger = document.querySelector(".bi-list");
+var nav = document.querySelector(".lower-Nav")
 
-// Write your JavaScript code.
+hamburger.addEventListener("click", function () {
+    nav.classList.toggle("openNav");
+    return true;
+});
