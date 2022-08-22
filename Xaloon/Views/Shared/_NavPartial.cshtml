@@ -10,7 +10,7 @@
        <ul class="navLinks">
            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
            <li><a href="#About">About</a></li>
-           <li><a asp-area="Customer" asp-controller="Home" asp-action="Services">Services</a></li>
+           <li><a href="#Photos">Photos</a></li>
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Customer"))
