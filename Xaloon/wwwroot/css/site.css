@@ -196,4 +196,65 @@ a{
     margin:.8rem auto;
     text-align:center;
 }
+@media (max-width: 920px) {
+    .About {
+        position: relative;
+        width: 100%;
+        height: fit-content;
+        background: #dee7ec;
+        overflow: hidden;
+    }
+    .abt-content {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content1 {
+        background: #0ae8b5;
+        text-align: center;
+        padding:1rem;
+    }
+
+    .content2 {
+        background: #fcbe78;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .content3 {
+        background: #ebffff;
+        padding: 1rem;
+    }
+
+    .content4 {
+        background: #f26941;
+        padding: 1rem;
+        border-radius:0;
+    }
+
+    .content5 {
+        background: #78c1fa;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .content6 {
+        background: #fc89f2;
+        padding: 1rem;
+    }
+
+    .content7 {
+        background: #456bd9;
+        padding: 1rem;
+    }
+
+    .abt-lorem {
+        width: 90%;
+        margin: .8rem auto;
+        text-align: center;
+    }
+}
+
 
