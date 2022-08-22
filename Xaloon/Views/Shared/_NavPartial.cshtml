@@ -5,6 +5,7 @@
 
 
 <nav>
+    
     <a asp-area="Customer" asp-controller="Home" asp-action="Index"><img class="brandName" src="~/img/Xaloon-Logo.png" /></a>
     <div class="lower-Nav">
        <ul class="navLinks">
@@ -59,6 +60,14 @@
                     </li>
             }
        </ul>
+    </div>
+    <div class="welcome">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                    <a id="manage" class="nav-link text-light userName" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome <span>@((await UserManager.GetUserAsync(User)).FirstName)</span></a>
+            </li>
+        }
     </div>
     <i class="bi bi-list"></i>
 </nav>

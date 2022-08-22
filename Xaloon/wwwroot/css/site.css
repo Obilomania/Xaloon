@@ -105,7 +105,22 @@ a{
     color:white;
     z-index:7;
 }
-
+.welcome {
+    display: block;
+    position: absolute;
+    right: 1.5rem;
+    top: 4rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: white;
+    z-index: 7;
+    font-variant:small-caps;
+    color:white;
+    font-weight:900;
+}
+.userName span{
+    color:#fc89f2;
+}
 
 
 
