@@ -1,60 +1,67 @@
-﻿@model IEnumerable<Xaloon.Areas.Customer.Models.Appointment>
+﻿
+
+@model IEnumerable<Xaloon.Areas.Customer.Models.Appointment>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="dashIndex">
+    <br />
+    <br />
+    <br />
+   <h1 class="text-center text-light">List of booked appointments</h1>
 
-<p>
-    <a asp-controller="Appointments" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Day)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExtraMessage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsApproved)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+
+    <table id="tblData" class="table table-dark table-bordered container" >
+        <thead class="text-light">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title.Bookingitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Day.SetDay)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Time.SetTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExtraMessage)
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.Approved)
-                </td>
-                <td>
-                    <a asp-controller="Appointments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-controller="Appointments" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-controller="Appointments" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
+                <th class="text-light text-center">
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th class="text-light text-center">
+                    @Html.DisplayNameFor(model => model.Day)
+                </th>
+                <th class="text-light text-center">
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th class="text-light text-center">
+                    @Html.DisplayNameFor(model => model.ExtraMessage)
+                </th>
+                <th class="text-light text-center">
+                    @Html.DisplayNameFor(model => model.IsApproved)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.Title.Bookingitle)
+                            </td>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.Day.SetDay)
+                            </td>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.Time.SetTime)
+                            </td>
+                            <td>
+                        @Html.DisplayFor(modelItem => item.ExtraMessage)
+                            </td>
+                            <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Approved)
+                            </td>
+                            <td>
+                                <a asp-controller="Appointments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-controller="Appointments" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-controller="Appointments" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

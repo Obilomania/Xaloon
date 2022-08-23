@@ -4,7 +4,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
-<nav>
+<nav >
     
     <a asp-area="Customer" asp-controller="Home" asp-action="Index"><img class="brandName" src="~/img/Xaloon-Logo.png" /></a>
     <div class="lower-Nav">
@@ -17,15 +17,12 @@
                 if (User.IsInRole("Customer"))
                 {
                     <li>
-                        <a asp-area="Customer" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                        <a asp-area="Customer" asp-controller="Dashboard" asp-action="Dashboard">Dashboard</a>
                     </li>
                 }
             }
             @if (User.Identity.IsAuthenticated || SignInManager.IsSignedIn(User))
             {
-                    <li>
-                        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome @((await UserManager.GetUserAsync(User)).FirstName)</a>
-                    </li>
                 if (User.IsInRole("Admin"))
                 {
                     <li>
@@ -64,9 +61,7 @@
     <div class="welcome">
         @if (SignInManager.IsSignedIn(User))
         {
-            <li class="nav-item">
-                    <a id="manage" class="nav-link text-light userName" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome <span>@((await UserManager.GetUserAsync(User)).FirstName)</span></a>
-            </li>
+            <p id="manage" class="nav-link text-light userName" style="cursor:auto;">Welcome <span>@((await UserManager.GetUserAsync(User)).FirstName)</span></p>
         }
     </div>
     <i class="bi bi-list"></i>

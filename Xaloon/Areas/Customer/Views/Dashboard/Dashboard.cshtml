@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Xaloon.Areas.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<div class="dash">
+
+
+    <div class="dashContent">
+        <div class="greetNote">
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+
+                      <h4 class="dashNote">Welcome to your Dashboard <span>@((await UserManager.GetUserAsync(User)).FirstName)</h4>
+            }
+        </div>
+        <div class="btns">
+            <a asp-controller="Appointments" asp-action="Create">Book New Appointment</a>
+
+            <a asp-controller="Appointments" asp-action="Create">View Booked Appointments</a>
+
+            <a href="tel:+2348033954540">Call Saloon</a>
+
+            <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">View Profile</a>
+
+            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="nav-link px-lg-3 py-3 py-lg-4">Logout</button>
+            </form>
+        </div>
+        
+    </div>
+
+</div>
+

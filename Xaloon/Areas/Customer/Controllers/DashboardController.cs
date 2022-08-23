@@ -28,5 +28,9 @@ namespace Xaloon.Areas.Customer.Controllers
             return View(appointments);
 
         }
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

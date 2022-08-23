@@ -7,4 +7,3 @@ hamburger.addEventListener("click", function () {
     nav.classList.toggle("openNav");
     return true;
 });
-
