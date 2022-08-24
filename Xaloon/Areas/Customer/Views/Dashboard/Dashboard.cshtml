@@ -2,6 +2,7 @@
 @using Xaloon.Areas.Data
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@model Xaloon.Areas.Customer.Models.Appointment
 
 
 <div class="dash">
@@ -13,13 +14,13 @@
             @if (SignInManager.IsSignedIn(User))
             {
 
-                      <h4 class="dashNote">Welcome to your Dashboard <span>@((await UserManager.GetUserAsync(User)).FirstName)</h4>
+               <h4 class="dashNote">Welcome to your Dashboard <span>@((await UserManager.GetUserAsync(User)).FirstName)</span></h4>
             }
         </div>
         <div class="btns">
             <a asp-controller="Appointments" asp-action="Create">Book New Appointment</a>
 
-            <a asp-controller="Appointments" asp-action="Create">View Booked Appointments</a>
+            <a asp-area="Customer" asp-controller="Dashboard" asp-action="Index">View Booked Appointments</a>
 
             <a href="tel:+2348033954540">Call Saloon</a>
 
@@ -31,6 +32,19 @@
         </div>
         
     </div>
+    @*<div class="infoDetails">
+        <div class="dashDetail">
+            <h1>0</h1>
+            <h5>Appointments</h5>
+            <a>View</a>
+        </div>
+
+        <div class="dashDetail">
+            <h1>0</h1>
+            <h5>Approved Appointments</h5>
+            <a >View</a>
+        </div>
+    </div>*@
 
 </div>
 

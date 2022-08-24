@@ -120,7 +120,7 @@ namespace Xaloon.Areas.Customer.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Dashboard");
             }
             ViewData["DayId"] = new SelectList(_ayRepository.GetAllDays().Result, "Id", "SetDay", appointment.DayId);
             ViewData["TimeId"] = new SelectList(_timeRepository.GetAllTime().Result, "Id", "SetTime", appointment.TimeId);

@@ -4,12 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-secondary">Appointments</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="container">
+    <a asp-controller="Dashboard" asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+    <a asp-area="Customer" asp-controller="Appointments" asp-action="Create" class="btn btn-dark float-end">Book Appointment</a>
 </p>
-<table class="table">
+<table id="tblData" class="table table-dark table-bordered container">
     <thead>
         <tr>
             <th class="text-center">

@@ -405,4 +405,18 @@ h1 {
     padding: 0px;
 }
 
+.go-up {
+    background-color: rgba(245, 40, 145, .8);
+    width:7rem;;
+    height:3rem;
+    text-align:center;
+    padding-top:.5rem;
+    padding-bottom:1rem;
+    position:fixed;
+    bottom:20vh;
+    right:0;
+    border-radius:.5rem 0rem 0rem .5rem;
+    font-variant:small-caps;
+}
+
 /*FOOTER*/

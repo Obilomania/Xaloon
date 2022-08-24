@@ -7,11 +7,11 @@
 <nav >
     
     <a asp-area="Customer" asp-controller="Home" asp-action="Index"><img class="brandName" src="~/img/Xaloon-Logo.png" /></a>
-    <div class="lower-Nav">
+    <div class="lower-Nav" id="theTop">
        <ul class="navLinks">
            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
-           <li><a href="#About">About</a></li>
-           <li><a href="#Photos">Photos</a></li>
+           <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">About</a></li>
+           <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Photos</a></li>
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole("Customer"))

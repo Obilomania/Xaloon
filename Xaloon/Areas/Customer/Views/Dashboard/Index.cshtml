@@ -12,7 +12,11 @@
     <br />
    <h1 class="text-center text-light">List of booked appointments</h1>
 
-
+    <p class="container">
+        <a asp-controller="Dashboard" asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        <a asp-area="Customer" asp-controller="Appointments" asp-action="Create" class="btn btn-dark float-end">Book Appointment</a>
+    </p>
+    <h6 class="text-center text-info fw-bolder">If Status is Checked, Appoinment is approved</h6>
 
     <table id="tblData" class="table table-dark table-bordered container" >
         <thead class="text-light">
@@ -39,22 +43,22 @@
             @foreach (var item in Model)
             {
                         <tr>
-                            <td>
+                            <td class="text-light text-center">
                         @Html.DisplayFor(modelItem => item.Title.Bookingitle)
                             </td>
-                            <td>
+                            <td class="text-light text-center">
                         @Html.DisplayFor(modelItem => item.Day.SetDay)
                             </td>
-                            <td>
+                            <td class="text-light text-center">
                         @Html.DisplayFor(modelItem => item.Time.SetTime)
-                            </td>
-                            <td>
+                            </td >
+                            <td class="text-light text-center">
                         @Html.DisplayFor(modelItem => item.ExtraMessage)
                             </td>
-                            <td class="text-center">
+                            <td class="text-light text-center">
                         @Html.DisplayFor(modelItem => item.Approved)
                             </td>
-                            <td>
+                            <td class="text-light text-center">
                                 <a asp-controller="Appointments" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                                 <a asp-controller="Appointments" asp-action="Details" asp-route-id="@item.Id">Details</a> |
                                 <a asp-controller="Appointments" asp-action="Delete" asp-route-id="@item.Id">Delete</a>

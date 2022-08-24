@@ -28,8 +28,9 @@ namespace Xaloon.Areas.Customer.Controllers
             return View(appointments);
 
         }
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
+            IEnumerable<Appointment> appointments = await _appointmentRepository.GetAllAppointments();
             return View();
         }
     }

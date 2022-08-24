@@ -78,13 +78,13 @@ input[type="submit"] {
 @media (max-width: 920px){
     .section {
         position: absolute;
-        right: 1.5%;
+        right: .1%;
         top: 30%;
         text-align: center;
         background-color: rgba(250, 16, 137, 0.38);
         border-radius: 1rem;
         padding: 3rem;
-        width: fit-content;
+        width: 100%;
         height: fit-content;
         z-index: 6;
     }

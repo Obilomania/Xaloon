@@ -3,49 +3,46 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<h1>Book Appointment</h1>
 
-<h1>Edit</h1>
+<form asp-action="Edit" method="post" class="container">
+        <div class="border p-3 mt-4">
+                <div class="row pb-2">
 
-<h4>Appointment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <input type="hidden" id="ApplicationUserId" name="ApplicationUserId" asp-for="ApplicationUserId" />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="TitleId" class="control-label"></label>
-                <select asp-for="TitleId" class="form-control" asp-items="ViewBag.TitleId"></select>
-                <span asp-validation-for="TitleId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DayId" class="control-label"></label>
-                <select asp-for="DayId" class="form-control" asp-items="ViewBag.DayId"></select>
-                <span asp-validation-for="DayId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TimeId" class="control-label"></label>
-                <select asp-for="TimeId" class="form-control" asp-items="ViewBag.TimeId"></select>
-                <span asp-validation-for="TimeId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ExtraMessage" class="control-label"></label>
-                <textarea asp-for="ExtraMessage" class="form-control" style="resize:none;" rows="4" ></textarea>
-                <span asp-validation-for="ExtraMessage" class="text-danger"></span>
-            </div>
+                        <input type="hidden" id="ApplicationUserId" name="ApplicationUserId" asp-for="ApplicationUserId" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="mb-3">
+                            <label asp-for="TitleId" class="control-label"></label>
+                            <select asp-for="TitleId" class ="form-control" asp-items="ViewBag.TitleId">
+                                <option disabled selected>--Select Appointment Title--</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DayId" class="control-label"></label>
+                            <select asp-for="DayId" class ="form-control" asp-items="ViewBag.DayId">
+                                <option disabled selected>--Choose Day--</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="TimeId" class="control-label"></label>
+                            <select asp-for="TimeId" class ="form-control" asp-items="ViewBag.TimeId">
+                                <option>--Choose Time--</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ExtraMessage" class="control-label"></label>
+                            <textarea asp-for="ExtraMessage" class="form-control" style="resize:none;" rows="4" ></textarea>
+                            <span asp-validation-for="ExtraMessage" class="text-danger"></span>
+                        </div>
 
-            
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                        <div class="mb-3">
+                            <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+                            <input type="submit" value="Save" class="btn btn-outline-primary float-end" style="width:7rem;" />
+                        </div>
+                </div>
+        </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

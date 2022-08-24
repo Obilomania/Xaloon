@@ -17,6 +17,8 @@
 }
 .dash {
     position: relative;
+    display:flex;
+    gap: 10rem;
     width: 100%;
     height: 100vh;
     background-image: url(/img/dashboard.jpg);
@@ -42,7 +44,7 @@
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
 }
 .dashContent {
-    position:absolute;
+    margintop
     top:0;
     width: 25%;
     height: 50vh;
@@ -70,8 +72,43 @@
     font-weight:700;
     transition: 400ms all ease;
 }
-    .btns a:hover {
-        background-color: lightpink;
-        border: 1px solid rgba(245, 40, 145, .5);
-        font-size: 1.4rem;
-    }
+.btns a:hover {
+    background-color: lightpink;
+    border: 1px solid rgba(245, 40, 145, .5);
+    font-size: 1.4rem;
+}
+.infoDetails {
+    display: flex;
+    gap: 2rem;
+
+}
+.dashDetail {
+    background-color: rgba(245, 40, 145, .5);
+    width: 12rem;
+    height: 15rem;
+    display: flex;
+    margin-top:4rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-variant: small-caps;
+    font-size: 1rem;
+    font-weight: 700;
+    color:white;
+    text-align:center;
+    border-radius:1rem;
+    position:relative;
+}
+.dashDetail h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-variant: small-caps;
+    font-weight: 700;
+    color: white;
+    position:absolute;
+    top:1rem;
+}
+.dashDetail a {
+    position: absolute;
+    bottom: 2rem;
+}
